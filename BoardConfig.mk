@@ -105,3 +105,20 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_INCLUDE_REPACKTOOLS := true
+
+# Recovery Storage & MTP Fixes for MediaTek Virtual A/B
+TW_EXCLUDE_SUPERSUDO := true
+TW_INCLUDE_CRYPTO := true
+TW_USE_TOOLBOX := true
+TW_DEFAULT_LANGUAGE := en
+TW_SUPPORT_EXFAT := true
+TW_INPUT_BLACKLIST := "hbtp_cmd"
+TW_USB_STORAGE_PATH := "/usb_otg"
+TW_MTP_DEFAULT_STORAGE := "/sdcard"
+
+# Encryption & Storage Fixes for Android 11 Virtual A/B
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+BOARD_USES_METADATA_PARTITION := true
+TW_PREPARE_DATA_MEDIA_AT_BOOT := true
+TW_USE_MODEL_HARDWARE_ID_FOR_FBE := true
