@@ -1,4 +1,4 @@
-name: TWRP-X6512-Simple-Builder
+name: TWRP-X6512-Roomservice-Builder
 
 on:
   workflow_dispatch:
@@ -20,16 +20,25 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y repo bc build-essential zip curl libstdc++6 git wget python3 clang libssl-dev rsync flex bison
 
-      - name: Init Manifest and Sync
+      - name: Init Minimal Manifest
         run: |
           mkdir -p ~/twrp && cd ~/twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11 --depth=1
-          repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j4
 
-      - name: Checkout Device Tree
-        uses: actions/checkout@v4
-        with:
-          path: ~/twrp/device/infinix/X6512
+      - name: Add Local Manifest for Device Tree
+        run: |
+          mkdir -p ~/twrp/.repo/local_manifests
+          cat << 'EOT' > ~/twrp/.repo/local_manifests/roomservice.xml
+          <?xml version="1.0" encoding="UTF-8"?>
+          <manifest>
+            <project name="lalitmurmu06/twrp_infinix_X6512" path="device/infinix/X6512" remote="github" revision="main" />
+          </manifest>
+          EOT
+
+      - name: Sync Manifest and Device Tree
+        run: |
+          cd ~/twrp
+          repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j4
 
       - name: Start Compilation
         run: |
