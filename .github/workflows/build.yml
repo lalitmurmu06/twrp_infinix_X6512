@@ -31,9 +31,9 @@ jobs:
 
       - name: Link Device Tree
         run: |
-          mkdir -p ~/twrp/device/infinix/
-          rm -rf ~/twrp/device/infinix/X6512
-          ln -s $GITHUB_WORKSPACE ~/twrp/device/infinix/X6512
+          mkdir -p ~/twrp/device/omni/
+          rm -rf ~/twrp/device/omni/X6512
+          ln -s $GITHUB_WORKSPACE ~/twrp/device/omni/X6512
 
       - name: Start Compilation
         run: |
