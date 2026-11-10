@@ -26,10 +26,10 @@ jobs:
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11 --depth=1
           repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j4
 
-      - name: Checkout Device Tree to Correct Path
+      - name: Checkout Device Tree
         uses: actions/checkout@v4
         with:
-          path: ~/twrp/device/infinix/Infinix-X6512
+          path: ~/twrp/device/infinix/X6512
 
       - name: Start Compilation
         run: |
