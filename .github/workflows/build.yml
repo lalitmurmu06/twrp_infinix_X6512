@@ -39,7 +39,7 @@ jobs:
           cd ~/twrp
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
-          lunch omni_Infinix-X6512-eng
+          lunch omni_X6512-eng
           mka bootimage
 
       - name: Upload Artifact
