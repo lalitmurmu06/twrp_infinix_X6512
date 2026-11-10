@@ -1,4 +1,4 @@
-name: TWRP-Builder-X6512
+name: TWRP-X6512-Simple-Builder
 
 on:
   workflow_dispatch:
@@ -9,42 +9,40 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - name: Free Up Disk Space
+      - name: Free Disk Space
         run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /opt/ghc
-          sudo rm -rf "/usr/local/share/boost"
-          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost
           sudo docker image prune --all --force
           df -h
 
-      - name: Install Dependencies
+      - name: Checkout Device Tree
+        uses: actions/checkout@v4
+
+      - name: Prepare Build Environment
         run: |
           sudo apt-get update
-          sudo apt-get install -y bc build-essential zip curl libstdc++6 git wget python3 clang libssl-dev rsync flex bison
-          sudo curl https://storage.googleapis.com/git-repo-downloads/repo > /usr/local/bin/repo
-          sudo chmod a+x /usr/local/bin/repo
+          sudo apt-get install -y repo bc build-essential zip curl libstdc++6 git wget python3 clang libssl-dev rsync flex bison
 
-      - name: Sync TWRP-11 Minimal Manifest
+      - name: Init Manifest and Sync
         run: |
           mkdir -p ~/twrp && cd ~/twrp
-          repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11
-          repo sync -j$(nproc --all) --force-sync
+          repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11 --depth=1
+          repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j4
 
-      - name: Clone Device Tree
-        uses: actions/checkout@v4
-        with:
-          path: ~/twrp/device/infinix/Infinix-X6512
+      - name: Link Device Tree
+        run: |
+          mkdir -p ~/twrp/device/infinix/
+          ln -s $GITHUB_WORKSPACE ~/twrp/device/infinix/Infinix-X6512
 
-      - name: Build TWRP Boot Image
+      - name: Start Compilation
         run: |
           cd ~/twrp
           source build/envsetup.sh
           export ALLOW_MISSING_DEPENDENCIES=true
           lunch omni_Infinix-X6512-eng
-          mka bootimage -j$(nproc --all)
+          mka bootimage
 
-      - name: Upload Compiled TWRP (boot.img)
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: TWRP-Infinix-X6512-boot
