@@ -7,3 +7,10 @@ PRODUCT_DEVICE := X6512
 PRODUCT_MANUFACTURER := Infinix
 PRODUCT_BRAND := Infinix
 PRODUCT_MODEL := Infinix Smart 6 HD
+
+# Force Enable ADB in TWRP
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.debuggable=1 \
+    persist.sys.usb.config=mtp,adb
