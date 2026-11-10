@@ -15,9 +15,6 @@ jobs:
           sudo docker image prune --all --force
           df -h
 
-      - name: Checkout Device Tree
-        uses: actions/checkout@v4
-
       - name: Prepare Build Environment
         run: |
           sudo apt-get update
@@ -29,11 +26,10 @@ jobs:
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11 --depth=1
           repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune -j4
 
-      - name: Link Device Tree
-        run: |
-          mkdir -p ~/twrp/device/omni/
-          rm -rf ~/twrp/device/omni/X6512
-          ln -s $GITHUB_WORKSPACE ~/twrp/device/omni/X6512
+      - name: Clone Device Tree Directly
+        uses: actions/checkout@v4
+        with:
+          path: ~/twrp/device/infinix/X6512
 
       - name: Start Compilation
         run: |
