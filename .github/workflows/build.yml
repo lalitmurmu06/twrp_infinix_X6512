@@ -32,7 +32,8 @@ jobs:
       - name: Link Device Tree
         run: |
           mkdir -p ~/twrp/device/infinix/
-          ln -s $GITHUB_WORKSPACE ~/twrp/device/infinix/Infinix-X6512
+          rm -rf ~/twrp/device/infinix/X6512
+          ln -s $GITHUB_WORKSPACE ~/twrp/device/infinix/X6512
 
       - name: Start Compilation
         run: |
@@ -46,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: TWRP-Infinix-X6512-boot
-          path: ~/twrp/out/target/product/Infinix-X6512/boot.img
+          path: ~/twrp/out/target/product/X6512/boot.img
