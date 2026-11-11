@@ -4,5 +4,5 @@
 /para               emmc      /dev/block/platform/bootdevice/by-name/para                       flags=display="Para"
 /misc               emmc      /dev/block/platform/bootdevice/by-name/misc                       flags=display="Misc"
 /persistent         emmc      /dev/block/platform/bootdevice/by-name/frp                        flags=display="FRP"
-/external_sd        auto      /dev/block/mmcblk1p1                     /dev/block/mmcblk1       flags=display="Micro SDCard";storage;wipeingui;removable
+/micro_sd           auto      /dev/block/mmcblk1p1                     /dev/block/mmcblk1       flags=display="Micro SDCard";storage;wipeingui;removable
 /usb_otg            auto      /dev/block/sda1                          /dev/block/sda           flags=display="USB-OTG";storage;wipeingui;removable

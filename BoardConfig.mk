@@ -129,3 +129,10 @@ TW_SKIP_COMPATIBILITY_CHECK := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 BOARD_USES_METADATA_PARTITION := true
+
+# Force MTP and ADB Enabled by Default in Recovery
+TW_DEFAULT_STORAGE_DEVICE := "/dev/block/bootdevice/by-name/userdata"
+TW_USE_TOOLBOX := true
+TW_EXCLUDE_MTP := false
+TW_EXTERNAL_STORAGE_PATH := "/micro_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "micro_sd"
