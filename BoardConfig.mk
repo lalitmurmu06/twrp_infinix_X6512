@@ -113,7 +113,6 @@ TW_DEFAULT_LANGUAGE := en
 TW_SUPPORT_EXFAT := true
 TW_INPUT_BLACKLIST := "hbtp_cmd"
 TW_USB_STORAGE_PATH := "/usb_otg"
-TW_MTP_DEFAULT_STORAGE := "/sdcard"
 
 # Encryption & Storage Fixes for Android 11 Virtual A/B
 TW_INCLUDE_CRYPTO := true
@@ -124,9 +123,10 @@ TW_USE_MODEL_HARDWARE_ID_FOR_FBE := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 33484800
 
 # Storage & Internal SDCARD Path Fixes
-TW_INTERNAL_STORAGE_PATH := "/sdcard"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-TW_EXTERNAL_STORAGE_PATH := "/usb_otg"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb_otg"
 TW_SAVE_DECRYPTED_DATA_TO_RM := true
 TW_SKIP_COMPATIBILITY_CHECK := true
+
+# Corrected TWRP Storage & Datamedia Mapping for Android 11
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+BOARD_USES_METADATA_PARTITION := true
