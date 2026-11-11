@@ -2,12 +2,6 @@ on init
     setprop sys.usb.configfs 1
     setprop sys.usb.ffs.aio_compat 1
 
-on fs
-    write /sys/class/android_usb/android0/f_ffs/aliases adb
-    mkdir /dev/usb-ffs 0775 shell shell
-    mkdir /dev/usb-ffs/adb 0770 shell shell
-    mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
-
 on boot
-    start adbd
     setprop sys.usb.config mtp,adb
+    exec - root root -- /system/bin/sh -c "cd / && sha256sum init > /ramdisk-files.sha256sum"
