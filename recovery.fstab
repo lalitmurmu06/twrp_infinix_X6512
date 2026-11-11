@@ -10,3 +10,4 @@ system_ext                                              /system_ext         ext4
 /dev/block/by-name/userdata                             /data               f2fs      noatime,nosuid,nodev,discard,inline_xattr_size=60   wait,check,formattable,latemount,fileencryption=aes-256-xts:aes-256-cts:v1,keyDirectory=/metadata/vold/metadata_encryption
 /dev/block/platform/bootdevice/by-name/state            /swapper            emmc      defaults                                            defaults
 /dev/block/by-name/frp                                  /persistent         emmc      defaults                                            defaults
+/data/media                                             /sdcard             datamedia   defaults                                            defaults
