@@ -112,7 +112,6 @@ TW_USE_TOOLBOX := true
 TW_DEFAULT_LANGUAGE := en
 TW_SUPPORT_EXFAT := true
 TW_INPUT_BLACKLIST := "hbtp_cmd"
-TW_USB_STORAGE_PATH := "/usb_otg"
 
 # Encryption & Storage Fixes for Android 11 Virtual A/B
 TW_INCLUDE_CRYPTO := true
