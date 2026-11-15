@@ -8,5 +8,5 @@ system_ext                                              /system_ext         ext4
 /dev/block/platform/bootdevice/by-name/userdata                             /data               f2fs      noatime,nosuid,nodev,discard,inlinecrypt   wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2,keydirectory=/metadata/vold/metadata_encryption
 /dev/block/by-name/boot                                 /boot               emmc      defaults                                            slotselect
 /dev/block/by-name/para                                 /para               emmc      defaults                                            defaults
-/dev/block/by-name/misc                                 /misc               emmc      defaults                                            defaults
+/dev/block/by-name/para                                 /misc               emmc      defaults                                            defaults
 /dev/block/by-name/frp                                  /persistent         emmc      defaults                                            defaults
